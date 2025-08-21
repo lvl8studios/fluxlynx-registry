@@ -4,24 +4,16 @@
   "components": {
     "stars": {
       "title": "Stars rating",
-      "files": [
-        "components/stars/stars.tsx",
-        "components/stars/index.ts"
-      ],
+      "files": ["components/stars.tsx"],
       "peerDeps": ["react", "react-dom", "@fluxlynx/react"]
     },
     "contact": {
       "title": "Contact form",
-      "files": [
-        "components/contact/contact-form.tsx",
-        "components/contact/index.ts"
-      ],
+      "files": ["components/contact-form.tsx"],
       "peerDeps": ["react", "react-dom", "@fluxlynx/react"]
     }
   },
   "shared": {
-    "files": [
-      "lib/utils.ts"
-    ]
+    "files": ["lib/utils.ts"]
   }
 }
