@@ -1,7 +1,8 @@
 "use client";
 import * as React from "react";
 import { useFluxLynx } from "@fluxlynx/react";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
+import { useState } from "react";
 
 export type StarsProps = {
   max?: number;
@@ -18,15 +19,19 @@ export default function Stars({
   className,
   onSubmitted,
 }: StarsProps) {
-  const [hover, setHover] = React.useState<number | null>(null);
-  const [current, setCurrent] = React.useState<number>(value);
-  const [submitting, setSubmitting] = React.useState(false);
-  const { submit } = useFluxLynx("stars", { componentId });
+  const [hover, setHover] = useState<number | null>(null);
+  const [current, setCurrent] = useState<number>(value);
+  const [submitting, setSubmitting] = useState(false);
+  const { trpc } = useFluxLynx();
 
   async function handleSubmit(next: number) {
     setSubmitting(true);
     try {
-      const res = await submit({ rating: next });
+      const res = await trpc.feedback.submit.mutate({
+        kind: "stars",
+        componentId,
+        data: { rating: next },
+      });
       onSubmitted?.(res.ok);
     } finally {
       setSubmitting(false);
@@ -34,7 +39,11 @@ export default function Stars({
   }
 
   return (
-    <div className={cn("flx-stars", className)} role="radiogroup" aria-label="Rating">
+    <div
+      className={cn("inline-flex items-center", className)}
+      role="radiogroup"
+      aria-label="Rating"
+    >
       {Array.from({ length: max }).map((_, i) => {
         const idx = i + 1;
         const active = (hover ?? current) >= idx;
@@ -54,8 +63,8 @@ export default function Stars({
               handleSubmit(idx);
             }}
             className={cn(
-              "flx-star",
-              active ? "flx-star--active" : "flx-star--inactive"
+              "cursor-pointer text-xl leading-none bg-transparent border-0 px-0.5",
+              active ? "text-yellow-400" : "text-gray-300"
             )}
             title={`${idx} star${idx > 1 ? "s" : ""}`}
           >
@@ -63,26 +72,6 @@ export default function Stars({
           </button>
         );
       })}
-      <style jsx>{`
-        .flx-star {
-          cursor: pointer;
-          font-size: 1.25rem;
-          line-height: 1;
-          background: none;
-          border: 0;
-          padding: 0 2px;
-        }
-        .flx-star--active {
-          color: #f5b301;
-        }
-        .flx-star--inactive {
-          color: #c7c7c7;
-        }
-        .flx-stars {
-          display: inline-flex;
-          align-items: center;
-        }
-      `}</style>
     </div>
   );
 }
