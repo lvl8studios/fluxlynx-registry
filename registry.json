@@ -10,7 +10,8 @@
     "contact": {
       "title": "Contact form",
       "files": ["components/contact-form.tsx"],
-      "peerDeps": ["react", "react-dom", "@fluxlynx/react"]
+      "peerDeps": ["react", "react-dom", "@fluxlynx/react"],
+      "deps": ["button", "input"]
     }
   },
   "shared": {
