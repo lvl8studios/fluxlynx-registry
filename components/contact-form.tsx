@@ -4,6 +4,10 @@ import * as React from "react";
 import { useFluxLynx } from "@fluxlynx/react";
 import { cn } from "../lib/utils";
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
 
 export type ContactFormProps = {
   componentId?: string;
@@ -69,89 +73,83 @@ export default function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className={cn("grid gap-3 max-w-md", className)}>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className="grid gap-1 text-[0.9rem]">
-          First name
-          <input
+    <form onSubmit={onSubmit} className={cn("grid gap-4 max-w-md", className)}>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="firstName">First name</Label>
+          <Input
+            id="firstName"
             value={state.firstName}
             onChange={(e) =>
               setState((s) => ({ ...s, firstName: e.target.value }))
             }
             required
-            className="mt-1 rounded-md border bg-white/70 px-3 py-2 text-base backdrop-blur-md placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-3)] dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-white"
             placeholder="Jane"
           />
-        </label>
-        <label className="grid gap-1 text-[0.9rem]">
-          Last name
-          <input
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="lastName">Last name</Label>
+          <Input
+            id="lastName"
             value={state.lastName}
             onChange={(e) =>
               setState((s) => ({ ...s, lastName: e.target.value }))
             }
             required
-            className="mt-1 rounded-md border bg-white/70 px-3 py-2 text-base backdrop-blur-md placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-3)] dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-white"
             placeholder="Doe"
           />
-        </label>
+        </div>
       </div>
-      <label className="grid gap-1 text-[0.9rem]">
-        Email
-        <input
+      <div className="grid gap-2">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
           type="email"
           value={state.email}
           onChange={(e) => setState((s) => ({ ...s, email: e.target.value }))}
           required
-          className="mt-1 rounded-md border bg-white/70 px-3 py-2 text-base backdrop-blur-md placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-3)] dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-white"
           placeholder="you@example.com"
         />
-      </label>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <label className="grid gap-1 text-[0.9rem]">
-          Company (optional)
-          <input
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-2">
+          <Label htmlFor="company">Company (optional)</Label>
+          <Input
+            id="company"
             value={state.company}
             onChange={(e) =>
               setState((s) => ({ ...s, company: e.target.value }))
             }
-            className="mt-1 rounded-md border bg-white/70 px-3 py-2 text-base backdrop-blur-md placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-3)] dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-white"
             placeholder="Acme Inc."
           />
-        </label>
-        <label className="grid gap-1 text-[0.9rem]">
-          Phone number
-          <input
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="phone">Phone number</Label>
+          <Input
+            id="phone"
             value={state.phone}
             onChange={(e) => setState((s) => ({ ...s, phone: e.target.value }))}
             required
-            className="mt-1 rounded-md border bg-white/70 px-3 py-2 text-base backdrop-blur-md placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-3)] dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-white"
             placeholder="(555) 123-4567"
           />
-        </label>
+        </div>
       </div>
-      <label className="grid gap-1 text-[0.9rem]">
-        Comments
-        <textarea
+      <div className="grid gap-2">
+        <Label htmlFor="comments">Comments</Label>
+        <Textarea
+          id="comments"
           value={state.comments}
           onChange={(e) =>
             setState((s) => ({ ...s, comments: e.target.value }))
           }
           required
           rows={4}
-          className="mt-1 rounded-md border bg-white/70 px-3 py-2 text-base backdrop-blur-md placeholder:text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-3)] dark:border-neutral-800 dark:bg-neutral-900/40 dark:text-white"
           placeholder="Tell us a bit about your needs..."
         />
-      </label>
-      <button
-        type="submit"
-        disabled={submitting}
-        className={cn(
-          "inline-flex items-center justify-center rounded-md bg-gradient-to-b from-[var(--brand-2)] to-[var(--brand-3)] px-4 py-2 text-sm font-medium text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] disabled:opacity-60"
-        )}
-      >
+      </div>
+      <Button type="submit" disabled={submitting}>
         {submitting ? "Sending..." : "Send message"}
-      </button>
+      </Button>
     </form>
   );
 }

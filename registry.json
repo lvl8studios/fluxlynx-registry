@@ -11,7 +11,7 @@
       "title": "Contact form",
       "files": ["components/contact-form.tsx"],
       "peerDeps": ["react", "react-dom", "@fluxlynx/react"],
-      "deps": ["button", "input"]
+      "deps": ["button", "input", "label", "textarea"]
     }
   },
   "shared": {
