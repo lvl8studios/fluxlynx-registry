@@ -18,10 +18,10 @@ import { Badge } from "./badge";
 export function ChangelogWidget({ className }: { className?: string }) {
   const { trpc } = useFluxLynx();
   const [isOpen, setIsOpen] = React.useState(false);
-  
-  // Fetch updates
+
+  // Fetch updates using React Query hook
   const { data, isLoading } = trpc.content.list.useQuery({ kind: "changelog", limit: 10 });
-  
+
   const hasUpdates = (data?.items?.length ?? 0) > 0;
 
   return (
