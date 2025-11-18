@@ -12,6 +12,18 @@
       "files": ["components/contact-form.tsx"],
       "peerDeps": ["react", "react-dom", "@fluxlynx/react"],
       "deps": ["button", "input", "label", "textarea"]
+    },
+    "changelog": {
+      "title": "Changelog Widget",
+      "files": ["components/changelog.tsx"],
+      "peerDeps": ["react", "react-dom", "@fluxlynx/react", "lucide-react", "date-fns"],
+      "deps": ["button", "popover", "scroll-area", "badge"]
+    },
+    "interaction-toggle": {
+      "title": "Interaction Toggle (Like/Upvote)",
+      "files": ["components/interaction-toggle.tsx"],
+      "peerDeps": ["react", "react-dom", "@fluxlynx/react", "lucide-react"],
+      "deps": ["button"]
     }
   },
   "shared": {

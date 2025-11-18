@@ -4,10 +4,10 @@ import * as React from "react";
 import { useFluxLynx } from "@fluxlynx/react";
 import { cn } from "../lib/utils";
 import { useState } from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import { Button } from "./button";
+import { Input } from "./input";
+import { Label } from "./label";
+import { Textarea } from "./textarea";
 
 export type ContactFormProps = {
   componentId?: string;
