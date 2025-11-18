@@ -17,7 +17,7 @@
       "title": "Changelog Widget",
       "files": ["components/changelog.tsx"],
       "peerDeps": ["react", "react-dom", "@fluxlynx/react", "lucide-react", "date-fns"],
-      "deps": ["button", "popover", "scroll-area", "badge"]
+      "deps": ["button", "popover", "scroll-area", "badge", "alert-dialog"]
     },
     "interaction-toggle": {
       "title": "Interaction Toggle (Like/Upvote)",
